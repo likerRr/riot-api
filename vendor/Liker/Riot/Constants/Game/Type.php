@@ -1,0 +1,52 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Max
+ * Date: 13.02.14
+ * Time: 15:11
+ */
+
+namespace vendor\Liker\Riot\Constants\Game;
+
+
+class Type {
+
+	const CUSTOM_GAME   = 'CUSTOM_GAME';
+	const TUTORIAL_GAME = 'TUTORIAL_GAME';
+	const MATCHED_GAME  = 'MATCHED_GAME';
+
+	protected $_type = 'Unknown';
+	protected $_description = 'Type';
+	protected $_loose = 'Unknown Type';
+
+	public function __construct($type) {
+		$this->init($type);
+	}
+
+	protected function init($type) {
+		switch ($type) {
+			case Type::CUSTOM_GAME: {
+				$this->make('CUSTOM_GAME', 'Custom Games', 'Custom');
+				break;
+			}
+			case Type::TUTORIAL_GAME: {
+				$this->make('TUTORIAL_GAME', 'Tutorial Games', 'Tutorial');
+				break;
+			}
+			case Type::MATCHED_GAME: {
+				$this->make('MATCHED_GAME', 'All other games', 'Other');
+				break;
+			}
+			default: {
+
+			}
+		}
+	}
+
+	protected function make($type, $description, $loose) {
+		$this->_type        = $type;
+		$this->_description = $description;
+		$this->_loose       = $loose;
+	}
+
+}
