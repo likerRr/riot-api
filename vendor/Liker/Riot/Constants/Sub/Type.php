@@ -95,7 +95,7 @@ class Type {
 
 	protected static function make($type, $description, $loose) {
 		return array(
-			'typ'         => $type,
+			'type'         => $type,
 			'description' => $description,
 			'loose'       => $loose,
 		);

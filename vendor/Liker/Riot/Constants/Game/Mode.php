@@ -22,7 +22,11 @@ class Mode {
 	protected $_description = 'Mode';
 	protected $_loose = 'Unknown Mode';
 
-	public function __construct($name) {
+	public static function get($name) {
+		return new Mode($name);
+	}
+
+	protected function __construct($name) {
 		$this->init($name);
 	}
 
@@ -62,6 +66,27 @@ class Mode {
 		$this->_mode        = $name;
 		$this->_description = $description;
 		$this->_loose       = $loose;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function mode() {
+		return $this->_mode;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function description() {
+		return $this->_description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function loose() {
+		return $this->_loose;
 	}
 
 } 

@@ -8,47 +8,81 @@
 
 namespace vendor\Liker\Riot\Api;
 
-
 use vendor\Liker\Riot\Api;
+use vendor\Liker\Riot\Types\ChampionDto;
+use vendor\Liker\Riot\Response\Champion as ResponseChampion;
 
-class Champion extends Api implements Provider {
+class Champion extends Provider {
 
-	protected $_v = '1.1';
+	/**
+	 * Api version
+	 * @var string
+	 */
+	protected $_v = 'v1.1';
 
-	protected $_region = '';
+	/**
+	 * Array of champions
+	 * @var ChampionDto[]
+	 */
+	protected $_champions = array();
 
-	protected static $_instance = null;
+	/**
+	 * Response on champion API call. Just for OOP auto complete
+	 * @var ResponseChampion
+	 */
+	protected $_api_result;
 
-	protected $_json = '{}';
+	const API_TEMPLATE = '{region}/{v}/champion';
 
-	protected function __construct($region) {
-		$this->_region = $region;
-
+	public function __construct($region) {
+		$this->_api_template = Champion::API_TEMPLATE;
+		$this->_path_params  = array(
+			'region' => $region,
+			'v'      => $this->_v,
+		);
 	}
 
 	/**
-	 * @param $region
-	 * @return Champion
+	 * Additional query param to retrieve only free to play champions
+	 * @return $this
 	 */
-	public static function instance($region) {
-		if (Champion::$_instance === null) {
-			Champion::$_instance = new Champion($region);
-		}
-
-		return Champion::$_instance;
-	}
-
-	public function get() {
-		$uri = $this->makeUri();
-		$this->_json = Request::make($uri);
+	public function qFreeToPlay() {
+		$this->_query_params['freeToPlay'] = 'true';
 
 		return $this;
 	}
 
-	public function makeUri() {
-		$uri = urlencode(Provider::API_URL . $this->_region . '/v' . $this->_v . '/champion');
+	/**
+	 * Get all champions as array of ChampionDto objects
+	 * @return ChampionDto[]
+	 */
+	public function getAll() {
+		$champions = $this->_api_result->champions;
+		if (!empty($champions)) {
+			foreach ($champions as $key => $champion) {
+				$this->_champions[] = new ChampionDto($champion);
+			}
+		}
 
-		return $uri;
+		return $this->_champions;
+	}
+
+	/**
+	 * Get champion by name
+	 * @param string $name
+	 * @return null|ChampionDto
+	 */
+	public function get($name) {
+		$champions = $this->_api_result->champions;
+		if (!empty($champions)) {
+			foreach ($champions as $key => $champion) {
+				if ($name === $champion->name) {
+					return new ChampionDto($champion);
+				}
+			}
+		}
+
+		return null;
 	}
 
 } 

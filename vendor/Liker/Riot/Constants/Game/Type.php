@@ -15,11 +15,15 @@ class Type {
 	const TUTORIAL_GAME = 'TUTORIAL_GAME';
 	const MATCHED_GAME  = 'MATCHED_GAME';
 
-	protected $_type = 'Unknown';
+	protected $_type        = 'Unknown';
 	protected $_description = 'Type';
-	protected $_loose = 'Unknown Type';
+	protected $_loose       = 'Unknown Type';
 
-	public function __construct($type) {
+	public static function get($type) {
+		return new Type($type);
+	}
+
+	protected function __construct($type) {
 		$this->init($type);
 	}
 
@@ -47,6 +51,27 @@ class Type {
 		$this->_type        = $type;
 		$this->_description = $description;
 		$this->_loose       = $loose;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function type() {
+		return $this->_type;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function description() {
+		return $this->_description;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function loose() {
+		return $this->_loose;
 	}
 
 }
