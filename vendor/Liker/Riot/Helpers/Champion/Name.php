@@ -6,7 +6,7 @@
  * Time: 17:10
  */
 
-namespace vendor\Liker\Riot\Constants\Champion;
+namespace vendor\Liker\Riot\Helpers\Champion;
 
 
 class Name {
