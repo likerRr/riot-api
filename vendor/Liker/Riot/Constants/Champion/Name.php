@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Max
+ * User: Lizurchik Alexey
  * Date: 14.02.14
  * Time: 17:10
  */

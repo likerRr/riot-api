@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Max
+ * User: Lizurchik Alexey
  * Date: 13.02.14
  * Time: 18:11
  */
@@ -9,10 +9,23 @@
 namespace vendor\Liker\Riot\Api;
 
 use vendor\Liker\Riot\Api;
+use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Types\ChampionDto;
 use vendor\Liker\Riot\Response\Champion as ResponseChampion;
 
 class Champion extends Provider {
+
+	const API_TEMPLATE = '{region}/{v}/champion';
+
+	public static $availableRegions = array(
+		Region::BR,
+		Region::EUNE,
+		Region::EUW,
+		Region::LAN,
+		Region::LAS,
+		Region::NA,
+		Region::OCE,
+	);
 
 	/**
 	 * Api version
@@ -31,8 +44,6 @@ class Champion extends Provider {
 	 * @var ResponseChampion
 	 */
 	protected $_api_result;
-
-	const API_TEMPLATE = '{region}/{v}/champion';
 
 	public function __construct($region) {
 		$this->_api_template = Champion::API_TEMPLATE;

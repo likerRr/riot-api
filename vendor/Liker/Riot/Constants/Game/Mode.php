@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Max
+ * User: Lizurchik Alexey
  * Date: 13.02.14
  * Time: 15:10
  */
@@ -26,7 +26,7 @@ class Mode {
 		return new Mode($name);
 	}
 
-	protected function __construct($name) {
+	public function __construct($name) {
 		$this->init($name);
 	}
 

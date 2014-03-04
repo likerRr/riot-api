@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Max
+ * User: Lizurchik Alexey
  * Date: 13.02.14
  * Time: 15:11
  */
@@ -23,7 +23,7 @@ class Type {
 		return new Type($type);
 	}
 
-	protected function __construct($type) {
+	public function __construct($type) {
 		$this->init($type);
 	}
 

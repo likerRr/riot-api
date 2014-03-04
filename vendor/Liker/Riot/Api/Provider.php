@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Max
+ * User: Lizurchik Alexey
  * Date: 13.02.14
  * Time: 18:22
  */
@@ -41,7 +41,12 @@ class Provider {
 		$this->buildApiUri();
 		$result = json_decode(Request::make($this->_api_uri));
 		$this->checkStatus($result);
-		$this->_api_result = $result;
+		if ($this->isNoError()) {
+			$this->_api_result = $result;
+			if (method_exists($this, 'result_callback')) {
+				call_user_func(array($this, 'result_callback'), $this->_api_result);
+			}
+		}
 
 		return $this;
 	}
