@@ -35,10 +35,15 @@
 	$api = Api::instance($key);
 
 //	$challengerApi = $api->leagueChallenger(Region::EUNE)->qType(ChallengerType::RANKED_SOLO_5x5)->request();
-	$challengerApi = $api->leagueSummoner(Region::EUNE, 21797856)->request();
+//	$challengerApi = $api->leagueSummoner(Region::EUNE, 21797856)->request();
 //	$challengerApi = $api->leagueSummonerEntry(Region::EUNE, 21797856)->request();
 
-	var_dump($challengerApi->leagues());
+	$staticChampion = $api
+		->staticChampion(Region::RU)
+		->qChampData(array(\vendor\Liker\Riot\Helpers\ChampData::SKINS))
+		->qLocale('ru_RU')
+		->request();
+	var_dump($staticChampion);
 
 //	$championApi = $api
 //		->champion(Region::NA)

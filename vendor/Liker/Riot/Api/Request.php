@@ -12,7 +12,6 @@ namespace vendor\Liker\Riot\Api;
 class Request {
 
 	public static function make($uri) {
-
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $uri);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

@@ -31,6 +31,12 @@ class LeagueSummonerEntry extends Provider {
 	protected $_v = 'v2.3';
 
 	/**
+	 * Counted in rate limit
+	 * @var bool
+	 */
+	protected $_limited = true;
+
+	/**
 	 * Response on champion API call. Just for OOP auto complete
 	 * @var array[object]
 	 */

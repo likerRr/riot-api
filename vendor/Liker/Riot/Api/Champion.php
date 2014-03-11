@@ -34,6 +34,12 @@ class Champion extends Provider {
 	protected $_v = 'v1.1';
 
 	/**
+	 * Counted in rate limit
+	 * @var bool
+	 */
+	protected $_limited = true;
+
+	/**
 	 * Array of champions
 	 * @var ChampionDto[]
 	 */

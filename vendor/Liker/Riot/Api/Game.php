@@ -33,6 +33,12 @@ class Game extends Provider {
 	protected $_v = 'v1.3';
 
 	/**
+	 * Counted in rate limit
+	 * @var bool
+	 */
+	protected $_limited = true;
+
+	/**
 	 * Response on champion API call. Just for OOP auto complete
 	 * @var \vendor\Liker\Riot\Response\Game
 	 */
