@@ -29,15 +29,9 @@ class GameDto {
 
 	/**
 	 * Other players associated with the game
-	 * @var array
-	 */
-	protected $_fellowPlayers;
-
-	/**
-	 * Array ob PlayerDto objects
 	 * @var PlayerDto[]
 	 */
-	protected $_players;
+	protected $_fellowPlayers;
 
 	/**
 	 * Game id
@@ -110,7 +104,11 @@ class GameDto {
 	public function __construct($game) {
 		$this->_championId    = $game->championId;
 		$this->_createDate    = $game->createDate;
-		$this->_fellowPlayers = $game->fellowPlayers;
+		if (!empty($game->fellowPlayers)) {
+			foreach ($game->fellowPlayers as $fellowPlayer) {
+				$this->_fellowPlayers[] = new PlayerDto($fellowPlayer);
+			}
+		}
 		$this->_gameId        = $game->gameId;
 		$this->_gameMode      = $game->gameMode;
 		$this->_gameType      = $game->gameType;
@@ -139,30 +137,22 @@ class GameDto {
 	}
 
 	/**
-	 * @return array|\vendor\Liker\Riot\Types\PlayerDto[]
+	 * Get all players or single player by number
+	 * @param null|int $num
+	 * @return PlayerDto[]|PlayerDto|false
 	 */
-	public function players() {
-		if (!empty($this->_fellowPlayers)) {
-			foreach ($this->_fellowPlayers as $player) {
-				$this->_players[] = new PlayerDto($player);
+	public function players($num = null) {
+		if ($num !== null) {
+			$num = (int) $num;
+			if (isset($this->_fellowPlayers[$num])) {
+				return $this->_fellowPlayers[$num];
 			}
+
+			return false;
 		}
-
-		return $this->_players;
-	}
-
-	/**
-	 * Get custom player from fellow players
-	 * @see $_fellowPlayers
-	 * @param $num
-	 * @return null|PlayerDto
-	 */
-	public function player($num) {
-		if (isset($this->_fellowPlayers[$num])) {
-			return new PlayerDto($this->_fellowPlayers[$num]);
+		else {
+			return $this->_fellowPlayers;
 		}
-
-		return null;
 	}
 
 	/**

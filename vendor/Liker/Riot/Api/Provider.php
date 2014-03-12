@@ -14,7 +14,10 @@ use vendor\Liker\Riot\Error;
 
 class Provider {
 
-	/** @var object JSON data accepted from server */
+	/**
+	 * Response on API call
+	 * @var bool|null|object
+	 */
 	protected $_api_result = null;
 
 	protected $_path_params = array();
@@ -44,7 +47,7 @@ class Provider {
 		if ($this->isNoError()) {
 			$this->_api_result = $result;
 			if (method_exists($this, 'result_callback')) {
-				call_user_func(array($this, 'result_callback'), $this->_api_result);
+				call_user_func(array($this, 'result_callback'));
 			}
 		}
 

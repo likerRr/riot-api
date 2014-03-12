@@ -7,7 +7,7 @@
  */
 	use vendor\Liker\Riot\Api;
 	use vendor\Liker\Riot\Constants\ChallengerType;
-	use vendor\Liker\Riot\Constants\Champion\Name as ChampionName;
+	use vendor\Liker\Riot\Helpers\Champion\Name as ChampionName;
 	use vendor\Liker\Riot\Constants\Game\Mode;
 	use vendor\Liker\Riot\Constants\Region;
 
@@ -29,15 +29,25 @@
 
 		require $fileName;
 	}
-
+//	var_dump(iconv('cp1251', 'cp1251', 'øæå ÆØÅ'));
+//	$f = fopen('lol.csv', mb_check_encoding('a'));
+//	fwrite($f, 'asd');
+//	fclose($f);
+//file_put_contents('lol.csv',  iconv('windows-1251', 'utf-8', 'øæå ÆØÅ'));
 	$key = 'a5f2653c-3fa2-4211-9c6d-7c4d0ac77c3c';
 //	$key = 'a5f2653c-3fa2-4211-9c6d-7c4d0ac77cd3c';
 	$api = Api::instance($key);
 
 //	$challengerApi = $api->leagueChallenger(Region::EUNE)->qType(ChallengerType::RANKED_SOLO_5x5)->request();
+//	var_dump($challengerApi->get());
 //	$challengerApi = $api->leagueSummoner(Region::EUNE, 21797856)->request();
+//	var_dump($challengerApi->get()->leagues(0)->entries());
 //	$challengerApi = $api->leagueSummonerEntry(Region::EUNE, 21797856)->request();
-
+//	var_dump($challengerApi->get()->entries());
+//	$challengerApi = $api->leagueTeam(Region::EUNE, 20505143)->request();
+//	var_dump($challengerApi->get());
+//	$challengerApi = $api->leagueTeamEntry(Region::EUNE, 21797856)->request();
+//	var_dump($challengerApi->get());
 	$staticChampion = $api
 		->staticChampion(Region::RU)
 		->qChampData(array(\vendor\Liker\Riot\Helpers\ChampData::SKINS))
@@ -50,14 +60,14 @@
 //		->qFreeToPlay()
 //		->request();
 //
+//	var_dump($championApi->get()->champions(ChampionName::ASHE));die;
+//
 //	$gameApi = $api
 //		->game(Region::EUW, 20966031)
 //		->request();
 //
-//	$games = $gameApi->getGames();
-//	foreach ($games as $game) {
-//		var_dump($game->players());
-//	}
+//	$game = $gameApi->get();
+//	var_dump($game->games());
 //
 //	var_dump(Mode::get(Mode::ARAM)->loose());
 //

@@ -6,12 +6,13 @@
  * Time: 17:07
  */
 
-namespace vendor\Liker\Riot\Api;
+namespace vendor\Liker\Riot\Api\League;
 
+use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Types\LeagueDto;
+use vendor\Liker\Riot\Response\League\Summoner as ResponseLeagueSummoner;
 
-class LeagueSummoner extends Provider {
+class Summoner extends Provider {
 
 	const API_TEMPLATE = '{region}/{v}/league/by-summoner/{summonerId}';
 
@@ -36,16 +37,24 @@ class LeagueSummoner extends Provider {
 	protected $_limited = true;
 
 	/**
-	 * Response on champion API call. Just for OOP auto complete
-	 * @var array[object]
+	 * Response on API call
+	 * @see http://developer.riotgames.com/api/methods#!/578/1808
+	 * @var bool|null|object
 	 */
 	protected $_api_result;
 
-	protected $_leagues;
+	/**
+	 * @var ResponseLeagueSummoner
+	 */
+	protected $_response;
 
 
+	/**
+	 * @param $region
+	 * @param $summonerId
+	 */
 	public function __construct($region, $summonerId) {
-		$this->_api_template = LeagueSummoner::API_TEMPLATE;
+		$this->_api_template = Summoner::API_TEMPLATE;
 		$this->_path_params  = array(
 			'region'     => $region,
 			'v'          => $this->_v,
@@ -53,29 +62,16 @@ class LeagueSummoner extends Provider {
 		);
 	}
 
-	public function result_callback($api_result) {
-		if (!empty($api_result)) {
-			foreach ($api_result as $leagueDto) {
-				$this->_leagues[] = new LeagueDto($leagueDto);
-			}
-		}
+	protected function result_callback() {
+		$this->_response = new ResponseLeagueSummoner($this->_api_result);
 	}
 
 	/**
-	 * Get all leagues
-	 * @return mixed
+	 * Get response as object
+	 * @return ResponseLeagueSummoner
 	 */
-	public function leagues() {
-		return $this->_leagues;
-	}
-
-	/**
-	 * Get Single League
-	 * @param $num
-	 * @return null
-	 */
-	public function league($num) {
-		return isset($this->_leagues[$num]) ? $this->_leagues[$num] : null;
+	public function get() {
+		return $this->_response;
 	}
 
 } 

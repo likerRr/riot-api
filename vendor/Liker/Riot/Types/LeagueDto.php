@@ -54,22 +54,21 @@ class LeagueDto {
 	}
 
 	/**
-	 * @return mixed
+	 * @param null|int $num
+	 * @return LeagueItemDto|LeagueItemDto[]|false
 	 */
-	public function entries() {
-		return $this->_entries;
-	}
+	public function entries($num = null) {
+		if ($num !== null) {
+			$num = (int) $num;
+			if (isset($this->_entries[$num])) {
+				return $this->_entries[$num];
+			}
 
-	/**
-	 * @param $num
-	 * @return null|LeagueItemDto
-	 */
-	public function entry($num) {
-		if (isset($this->_entries[$num])) {
-			return $this->_entries[$num];
+			return false;
 		}
-
-		return null;
+		else {
+			return $this->_entries;
+		}
 	}
 
 	/**

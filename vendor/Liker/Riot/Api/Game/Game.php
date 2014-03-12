@@ -6,11 +6,12 @@
  * Time: 11:13
  */
 
-namespace vendor\Liker\Riot\Api;
+namespace vendor\Liker\Riot\Api\Game;
 
 
+use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Types\GameDto;
+use vendor\Liker\Riot\Response\Game\Game as ResponseGame;
 
 class Game extends Provider {
 
@@ -39,17 +40,21 @@ class Game extends Provider {
 	protected $_limited = true;
 
 	/**
-	 * Response on champion API call. Just for OOP auto complete
-	 * @var \vendor\Liker\Riot\Response\Game
+	 * Response on API call
+	 * @see https://developer.riotgames.com/api/methods#!/546/1727
+	 * @var bool|null|object
 	 */
 	protected $_api_result;
 
 	/**
-	 * Array of games
-	 * @var GameDto[]
+	 * @var ResponseGame
 	 */
-	protected $_games;
+	protected $_response;
 
+	/**
+	 * @param $region
+	 * @param $summonerId
+	 */
 	public function __construct($region, $summonerId) {
 		$this->_api_template = Game::API_TEMPLATE;
 		$this->_path_params  = array(
@@ -59,34 +64,16 @@ class Game extends Provider {
 		);
 	}
 
-	public function getSummonerId() {
-		return $this->_api_result->summonerId;
+	protected function result_callback() {
+		$this->_response = new ResponseGame($this->_api_result);
 	}
 
-	public function getGame($num) {
-		if ($this->_api_result != null) {
-			$games = $this->_api_result->games;
-			if (isset($games[$num])) {
-				return new GameDto($games[$num]);
-			}
-		}
-
-		return null;
-	}
-
-	public function getGames() {
-		if ($this->_api_result != null) {
-			$games = $this->_api_result->games;
-			if (!empty($games)) {
-				foreach ($games as $game) {
-					$this->_games[] = new GameDto($game);
-				}
-
-				return $this->_games;
-			}
-		}
-
-		return null;
+	/**
+	 * Get response as object
+	 * @return ResponseGame
+	 */
+	public function get() {
+		return $this->_response;
 	}
 
 } 

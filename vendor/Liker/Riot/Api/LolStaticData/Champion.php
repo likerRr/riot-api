@@ -6,14 +6,13 @@
  * Time: 18:11
  */
 
-namespace vendor\Liker\Riot\Api;
+namespace vendor\Liker\Riot\Api\LolStaticData;
 
 use vendor\Liker\Riot\Api;
+use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Types\ChampionDto;
-use vendor\Liker\Riot\Response\Champion as ResponseChampion;
 
-class StaticChampion extends Provider {
+class Champion extends Provider {
 
 	const API_TEMPLATE = 'static-data/{region}/{v}/champion/{id}';
 
@@ -49,7 +48,7 @@ class StaticChampion extends Provider {
 	protected $_api_result;
 
 	public function __construct($region, $championId = '') {
-		$this->_api_template = StaticChampion::API_TEMPLATE;
+		$this->_api_template = Champion::API_TEMPLATE;
 		$this->_path_params  = array(
 			'region' => $region,
 			'v'      => $this->_v,
@@ -57,11 +56,8 @@ class StaticChampion extends Provider {
 		);
 	}
 
-	/**
-	 * @param \vendor\Liker\Riot\Response\StaticChampion $api_result
-	 */
-	public function result_callback($api_result) {
-		var_dump($api_result);die;
+	public function result_callback() {
+		var_dump($this->_api_result);die;
 	}
 
 	/**

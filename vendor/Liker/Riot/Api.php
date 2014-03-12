@@ -8,12 +8,14 @@
 
 namespace vendor\Liker\Riot;
 
-use vendor\Liker\Riot\Api\LeagueChallenger;
-use vendor\Liker\Riot\Api\Champion;
-use vendor\Liker\Riot\Api\Game;
-use vendor\Liker\Riot\Api\LeagueSummoner;
-use vendor\Liker\Riot\Api\LeagueSummonerEntry;
-use vendor\Liker\Riot\Api\StaticChampion;
+use vendor\Liker\Riot\Api\Champion\Champion;
+use vendor\Liker\Riot\Api\Game\Game;
+use vendor\Liker\Riot\Api\League\Challenger;
+use vendor\Liker\Riot\Api\League\Summoner;
+use vendor\Liker\Riot\Api\League\SummonerEntry;
+use vendor\Liker\Riot\Api\League\Team;
+use vendor\Liker\Riot\Api\League\TeamEntry;
+use vendor\Liker\Riot\Api\LolStaticData\Champion as StaticChampion;
 
 class Api {
 
@@ -53,7 +55,6 @@ class Api {
 
 	/**
 	 * @param $region
-	 * @see https://developer.riotgames.com/api/methods#!/545/1726
 	 * @return Champion
 	 */
 	public function champion($region) {
@@ -65,7 +66,6 @@ class Api {
 	/**
 	 * @param $region
 	 * @param $summonerId
-	 * @see https://developer.riotgames.com/api/methods#!/546/1727
 	 * @return Game
 	 */
 	public function game($region, $summonerId) {
@@ -76,11 +76,10 @@ class Api {
 
 	/**
 	 * @param $region
-	 * @see https://developer.riotgames.com/api/methods#!/540/1698
-	 * @return LeagueChallenger
+	 * @return Challenger
 	 */
 	public function leagueChallenger($region) {
-		$challenger = new LeagueChallenger($region);
+		$challenger = new Challenger($region);
 
 		return $challenger;
 	}
@@ -88,11 +87,10 @@ class Api {
 	/**
 	 * @param $region
 	 * @param $summonerId
-	 * @see https://developer.riotgames.com/api/methods#!/540/1700
-	 * @return LeagueSummonerEntry
+	 * @return SummonerEntry
 	 */
 	public function leagueSummonerEntry($region, $summonerId) {
-		$leagueSummonerEntry = new LeagueSummonerEntry($region, $summonerId);
+		$leagueSummonerEntry = new SummonerEntry($region, $summonerId);
 
 		return $leagueSummonerEntry;
 	}
@@ -100,13 +98,34 @@ class Api {
 	/**
 	 * @param $region
 	 * @param $summonerId
-	 * @see https://developer.riotgames.com/api/methods#!/540/1699
-	 * @return LeagueSummoner
+	 * @return Summoner
 	 */
 	public function leagueSummoner($region, $summonerId) {
-		$leagueSummoner = new LeagueSummoner($region, $summonerId);
+		$leagueSummoner = new Summoner($region, $summonerId);
 
 		return $leagueSummoner;
+	}
+
+	/**
+	 * @param $region
+	 * @param $teamId
+	 * @return Team
+	 */
+	public function leagueTeam($region, $teamId) {
+		$leagueTeam = new Team($region, $teamId);
+
+		return $leagueTeam;
+	}
+
+	/**
+	 * @param $region
+	 * @param $teamId
+	 * @return TeamEntry
+	 */
+	public function leagueTeamEntry($region, $teamId) {
+		$leagueTeamEntry = new TeamEntry($region, $teamId);
+
+		return $leagueTeamEntry;
 	}
 
 	/**
