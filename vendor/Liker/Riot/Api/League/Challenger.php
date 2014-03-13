@@ -8,10 +8,9 @@
 
 namespace vendor\Liker\Riot\Api\League;
 
-
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Types\LeagueDto;
+use vendor\Liker\Riot\Types\League\LeagueDto;
 
 class Challenger extends Provider {
 

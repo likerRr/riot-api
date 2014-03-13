@@ -6,8 +6,7 @@
  * Time: 14:54
  */
 
-namespace vendor\Liker\Riot\Types;
-
+namespace vendor\Liker\Riot\Types\League;
 
 class LeagueItemDto {
 
@@ -191,7 +190,7 @@ class LeagueItemDto {
 	}
 
 	/**
-	 * @return \vendor\Liker\Riot\Types\MiniSeriesDto
+	 * @return MiniSeriesDto
 	 */
 	public function miniSeries() {
 		return $this->_miniSeries;

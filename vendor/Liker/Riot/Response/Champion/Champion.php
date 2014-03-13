@@ -9,7 +9,7 @@
 namespace vendor\Liker\Riot\Response\Champion;
 
 
-use vendor\Liker\Riot\Types\ChampionDto;
+use vendor\Liker\Riot\Types\Champion\ChampionDto;
 
 /**
  * Class Champion

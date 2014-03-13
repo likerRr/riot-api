@@ -8,7 +8,7 @@
 
 namespace vendor\Liker\Riot\Response\League;
 
-use vendor\Liker\Riot\Types\LeagueDto;
+use vendor\Liker\Riot\Types\League\LeagueDto;
 
 /**
  * Class Champion

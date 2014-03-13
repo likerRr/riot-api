@@ -6,7 +6,7 @@
  * Time: 14:54
  */
 
-namespace vendor\Liker\Riot\Types;
+namespace vendor\Liker\Riot\Types\Champion;
 
 
 class ChampionDto {
@@ -150,4 +150,4 @@ class ChampionDto {
 		return $this->_botMmEnabled;
 	}
 
-} 
+}

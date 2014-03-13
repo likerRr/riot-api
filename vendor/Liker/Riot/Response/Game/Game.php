@@ -9,7 +9,7 @@
 namespace vendor\Liker\Riot\Response\Game;
 
 
-use vendor\Liker\Riot\Types\GameDto;
+use vendor\Liker\Riot\Types\Game\GameDto;
 
 class Game {
 

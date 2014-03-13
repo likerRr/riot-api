@@ -6,7 +6,7 @@
  * Time: 11:52
  */
 
-namespace vendor\Liker\Riot\Types;
+namespace vendor\Liker\Riot\Types\Game;
 
 
 class PlayerDto {

@@ -11,6 +11,8 @@ namespace vendor\Liker\Riot\Api\LolStaticData;
 use vendor\Liker\Riot\Api;
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
+use vendor\Liker\Riot\Response\LolStaticData\Champion as ResponseStaticChampion;
+use vendor\Liker\Riot\Types\LolStaticData\StaticChampionDto;
 
 class Champion extends Provider {
 
@@ -41,9 +43,11 @@ class Champion extends Provider {
 	 */
 	protected $_limited = false;
 
+	protected $_response;
+
 	/**
 	 * Response on champion API call. Just for OOP auto complete
-	 * @var \vendor\Liker\Riot\Response\StaticChampion
+	 * @var ResponseStaticChampion
 	 */
 	protected $_api_result;
 
@@ -56,8 +60,18 @@ class Champion extends Provider {
 		);
 	}
 
-	public function result_callback() {
-		var_dump($this->_api_result);die;
+	protected function result_callback() {
+		var_dump($this->_api_result);
+		if (isset($this->_path_params['id']) && empty($this->_path_params['id'])) {
+			$this->_response = new ResponseStaticChampion($this->_api_result);
+		}
+		else {
+			$this->_response = new StaticChampionDto($this->_api_result);
+		}
+	}
+
+	public function get() {
+		return $this->_response;
 	}
 
 	/**

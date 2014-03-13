@@ -6,7 +6,7 @@
  * Time: 14:54
  */
 
-namespace vendor\Liker\Riot\Types;
+namespace vendor\Liker\Riot\Types\League;
 
 
 use vendor\Liker\Riot\Constants\Tier;

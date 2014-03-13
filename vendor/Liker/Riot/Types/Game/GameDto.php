@@ -6,8 +6,7 @@
  * Time: 14:54
  */
 
-namespace vendor\Liker\Riot\Types;
-
+namespace vendor\Liker\Riot\Types\Game;
 
 use vendor\Liker\Riot\Constants\Game\Mode;
 use vendor\Liker\Riot\Constants\Game\Type;
@@ -212,7 +211,7 @@ class GameDto {
 	}
 
 	/**
-	 * @return \vendor\Liker\Riot\Types\RawStatsDto
+	 * @return RawStatsDto
 	 */
 	public function stats() {
 		return new RawStatsDto($this->_stats);

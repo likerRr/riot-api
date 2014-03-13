@@ -10,7 +10,7 @@ namespace vendor\Liker\Riot\Api\League;
 
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Response\LeagueSummonerEntry as ResponseLeagueSummonerEntry;
+use vendor\Liker\Riot\Response\League\SummonerEntry as ResponseLeagueSummonerEntry;
 
 class SummonerEntry extends Provider {
 

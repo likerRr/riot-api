@@ -6,15 +6,15 @@
  * Time: 18:14
  */
 
-namespace vendor\Liker\Riot\Response;
+namespace vendor\Liker\Riot\Response\League;
 
-use vendor\Liker\Riot\Types\LeagueDto;
+use vendor\Liker\Riot\Types\League\LeagueDto;
 
 /**
  * Class Champion
  * @package vendor\Liker\Riot\Response
  */
-class LeagueTeam {
+class Team {
 
 	/** @var LeagueDto[] */
 	private $_leagues;
