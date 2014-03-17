@@ -49,8 +49,13 @@
 //		->qChampData(array(\vendor\Liker\Riot\Helpers\ChampData::ALL))
 //		->qLocale('ru_RU')
 //		->request();
-//	var_dump($staticChampion);
-
+//	var_dump($staticChampion->getAll());
+	$staticItem = $api
+		->staticItem(Region::RU, 3180)
+		->qItemData(array(\vendor\Liker\Riot\Helpers\ItemData::ALL))
+		->qLocale('ru_RU')
+		->request();
+//	var_dump($staticItem->getAll());
 //	$championApi = $api
 //		->champion(Region::NA)
 //		->qFreeToPlay()

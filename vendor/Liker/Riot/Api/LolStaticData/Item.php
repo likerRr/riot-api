@@ -11,12 +11,10 @@ namespace vendor\Liker\Riot\Api\LolStaticData;
 use vendor\Liker\Riot\Api;
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Response\LolStaticData\Champion as ResponseStaticChampion;
-use vendor\Liker\Riot\Types\LolStaticData\ChampionDto;
 
-class Champion extends Provider {
+class Item extends Provider {
 
-	const API_TEMPLATE = 'static-data/{region}/{v}/champion/{id}';
+	const API_TEMPLATE = 'static-data/{region}/{v}/item/{id}';
 
 	public static $availableRegions = array(
 		Region::BR,
@@ -44,52 +42,53 @@ class Champion extends Provider {
 	protected $_limited = false;
 
 	/**
-	 * @var ChampionDto
-	 * @see https://developer.riotgames.com/api/methods#!/544/1718
+	 * @var ItemDto
+	 * @see http://developer.riotgames.com/api/methods#!/544/1724
 	 */
 	protected $_response;
 
 	/**
-	 * @var ResponseStaticChampion
-	 * @see https://developer.riotgames.com/api/methods#!/544/1725
+	 * @var ResponseStaticItem
+	 * @see http://developer.riotgames.com/api/methods#!/544/1723
 	 */
 	protected $_responseAll;
 
 	/**
 	 * Response on API call
-	 * @see https://developer.riotgames.com/api/methods#!/544/1725
-	 * @see https://developer.riotgames.com/api/methods#!/544/1718
+	 * @see http://developer.riotgames.com/api/methods#!/544/1724
+	 * @see http://developer.riotgames.com/api/methods#!/544/1723
 	 * @var bool|null|object
 	 */
 	protected $_api_result;
 
-	public function __construct($region, $championId = '') {
-		$this->_api_template = Champion::API_TEMPLATE;
+	public function __construct($region, $itemId = '') {
+		$this->_api_template = Item::API_TEMPLATE;
 		$this->_path_params  = array(
 			'region' => $region,
 			'v'      => $this->_v,
-			'id'     => $championId,
+			'id'     => $itemId,
 		);
 	}
 
 	protected function result_callback() {
+//		var_dump($this->_api_result);die;
 		if (isset($this->_path_params['id']) && empty($this->_path_params['id'])) {
-			$this->_responseAll = new ResponseStaticChampion($this->_api_result);
+			$this->_responseAll = new ResponseStaticItem($this->_api_result);
 		}
 		else {
-			$this->_response = new ChampionDto($this->_api_result);
+			$this->_response = new ItemDto($this->_api_result);
 		}
 	}
 
 	/**
-	 * @return ChampionDto
+	 * @return ItemDto
 	 */
 	public function get() {
 		return $this->_response;
 	}
 
 	/**
-	 * @return ResponseStaticChampion
+	 * @return ResponseStaticItem
 	 */
 	public function getAll() {
 		return $this->_responseAll;
@@ -123,8 +122,8 @@ class Champion extends Provider {
 	 * @param $data
 	 * @return $this
 	 */
-	public function qChampData($data) {
-		$this->_query_params['champData'] = is_array($data) ? implode(',', $data) : $data;
+	public function qItemData($data) {
+		$this->_query_params['itemData'] = is_array($data) ? implode(',', $data) : $data;
 
 		return $this;
 	}

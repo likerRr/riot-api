@@ -8,11 +8,11 @@
 
 namespace vendor\Liker\Riot\Response\LolStaticData;
 
-use vendor\Liker\Riot\Types\LolStaticData\StaticChampionDto;
+use vendor\Liker\Riot\Types\LolStaticData\ChampionDto;
 
 class Champion {
 
-	/** @var StaticChampionDto[] */
+	/** @var ChampionDto[] */
 	protected $_data;
 
 	/**
@@ -42,7 +42,7 @@ class Champion {
 	public function __construct($apiResult) {
 		if (!empty($apiResult->data)) {
 			foreach ($apiResult->data as $champion) {
-				$this->_data[] = new StaticChampionDto($champion);
+				$this->_data[] = new ChampionDto($champion);
 			}
 		}
 		$this->_format  = $apiResult->format;
@@ -53,7 +53,7 @@ class Champion {
 
 	/**
 	 * @param int|null $num
-	 * @return StaticChampionDto[]|StaticChampionDto|false
+	 * @return ChampionDto[]|ChampionDto|false
 	 */
 	public function champions($num = null) {
 		if ($num !== null) {

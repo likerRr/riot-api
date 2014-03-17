@@ -16,6 +16,7 @@ use vendor\Liker\Riot\Api\League\SummonerEntry;
 use vendor\Liker\Riot\Api\League\Team;
 use vendor\Liker\Riot\Api\League\TeamEntry;
 use vendor\Liker\Riot\Api\LolStaticData\Champion as StaticChampion;
+use vendor\Liker\Riot\Api\LolStaticData\Item as StaticItem;
 
 class Api {
 
@@ -131,11 +132,21 @@ class Api {
 	/**
 	 * @param $region
 	 * @param $championId
-	 * @see https://developer.riotgames.com/api/methods#!/544/1725
 	 * @return StaticChampion
 	 */
 	public function staticChampion($region, $championId = '') {
 		$staticChampion = new StaticChampion($region, $championId);
+
+		return $staticChampion;
+	}
+
+	/**
+	 * @param $region
+	 * @param $itemId
+	 * @return StaticItem
+	 */
+	public function staticItem($region, $itemId = '') {
+		$staticChampion = new StaticItem($region, $itemId);
 
 		return $staticChampion;
 	}
