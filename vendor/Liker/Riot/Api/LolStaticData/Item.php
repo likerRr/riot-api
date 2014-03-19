@@ -71,9 +71,9 @@ class Item extends Provider {
 	}
 
 	protected function result_callback() {
-//		var_dump($this->_api_result);die;
+		var_dump($this->_api_result);die;
 		if (isset($this->_path_params['id']) && empty($this->_path_params['id'])) {
-			$this->_responseAll = new ResponseStaticItem($this->_api_result);
+			$this->_responseAll = new ItemListDto($this->_api_result);
 		}
 		else {
 			$this->_response = new ItemDto($this->_api_result);

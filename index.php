@@ -51,7 +51,8 @@
 //		->request();
 //	var_dump($staticChampion->getAll());
 	$staticItem = $api
-		->staticItem(Region::RU, 3180)
+//		->staticItem(Region::RU, 3180)
+		->staticItem(Region::RU)
 		->qItemData(array(\vendor\Liker\Riot\Helpers\ItemData::ALL))
 		->qLocale('ru_RU')
 		->request();
