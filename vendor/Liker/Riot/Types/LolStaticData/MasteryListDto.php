@@ -8,6 +8,10 @@
 
 namespace vendor\Liker\Riot\Types\LolStaticData;
 
+/**
+ * Class MasteryListDto
+ * @package vendor\Liker\Riot\Types\LolStaticData
+ */
 class MasteryListDto {
 
 	/**
@@ -30,6 +34,9 @@ class MasteryListDto {
 	 */
 	protected $_version;
 
+	/**
+	 * @param $masteryList
+	 */
 	function __construct($masteryList) {
 		if (!empty($masteryList->data)) {
 			foreach ($masteryList->data as $id => $data) {
