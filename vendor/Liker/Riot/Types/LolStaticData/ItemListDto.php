@@ -9,7 +9,13 @@
 namespace vendor\Liker\Riot\Types\LolStaticData;
 
 use vendor\Liker\Riot\Types\LolStaticData\ItemList\BasicDataDto;
+use vendor\Liker\Riot\Types\LolStaticData\ItemList\GroupDto;
+use vendor\Liker\Riot\Types\LolStaticData\ItemList\ItemTreeDto;
 
+/**
+ * Class ItemListDto
+ * @package vendor\Liker\Riot\Types\LolStaticData
+ */
 class ItemListDto {
 
 	/**
@@ -42,8 +48,10 @@ class ItemListDto {
 	 */
 	protected $_version;
 
-	function __construct($itemList)
-	{
+	/**
+	 * @param $itemList
+	 */
+	function __construct($itemList) {
 		$this->_basic = new BasicDataDto($itemList->basic);
 		if (!empty($itemList->data)) {
 			foreach ($itemList->data as $dataId => $dataVal) {
@@ -57,7 +65,7 @@ class ItemListDto {
 		}
 		if (!empty($itemList->tree)) {
 			foreach ($itemList->tree as $tree) {
-				$this->_tree[] = new GroupDto($tree);
+				$this->_tree[] = new ItemTreeDto($tree);
 			}
 		}
 		$this->_type    = $itemList->type;

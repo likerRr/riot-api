@@ -8,7 +8,6 @@
 
 namespace vendor\Liker\Riot\Helpers;
 
-
 class ChampData {
 
 	const ALL         = 'all';

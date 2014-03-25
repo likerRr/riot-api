@@ -6,8 +6,7 @@
  * Time: 9:38
  */
 
-namespace vendor\Liker\Riot\Helpers;
-
+namespace vendor\Liker\Riot\Helpers\LolStaticData;
 
 class ItemData {
 

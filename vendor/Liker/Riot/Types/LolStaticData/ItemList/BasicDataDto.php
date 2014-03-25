@@ -9,7 +9,9 @@
 namespace vendor\Liker\Riot\Types\LolStaticData\ItemList;
 
 use vendor\Liker\Riot\Types\LolStaticData\Champion\ImageDto;
+use vendor\Liker\Riot\Types\LolStaticData\ItemList\BasicData\BasicDataStatsDto;
 use vendor\Liker\Riot\Types\LolStaticData\ItemList\BasicData\GoldDto;
+use vendor\Liker\Riot\Types\LolStaticData\ItemList\BasicData\MetaDataDto;
 
 class BasicDataDto {
 

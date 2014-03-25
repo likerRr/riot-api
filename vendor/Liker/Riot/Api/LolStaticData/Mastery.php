@@ -11,16 +11,14 @@ namespace vendor\Liker\Riot\Api\LolStaticData;
 use vendor\Liker\Riot\Api;
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
-use vendor\Liker\Riot\Types\LolStaticData\ItemDto;
-use vendor\Liker\Riot\Types\LolStaticData\ItemListDto;
 
 /**
- * Class Item
+ * Class Mastery
  * @package vendor\Liker\Riot\Api\LolStaticData
  */
-class Item extends Provider {
+class Mastery extends Provider {
 
-	const API_TEMPLATE = 'static-data/{region}/{v}/item/{id}';
+	const API_TEMPLATE = 'static-data/{region}/{v}/mastery/{id}';
 
 	/**
 	 * @var array
@@ -51,44 +49,44 @@ class Item extends Provider {
 	protected $_limited = false;
 
 	/**
-	 * @var ItemDto
-	 * @see http://developer.riotgames.com/api/methods#!/544/1724
+	 * @var MasteryDto
+	 * @see http://developer.riotgames.com/api/methods#!/544/1716
 	 */
 	protected $_response;
 
 	/**
-	 * @var ItemListDto
-	 * @see http://developer.riotgames.com/api/methods#!/544/1723
+	 * @var MasteryListDto
+	 * @see http://developer.riotgames.com/api/methods#!/544/1721
 	 */
 	protected $_responseAll;
 
 	/**
 	 * Response on API call
-	 * @see http://developer.riotgames.com/api/methods#!/544/1724
-	 * @see http://developer.riotgames.com/api/methods#!/544/1723
+	 * @see http://developer.riotgames.com/api/methods#!/544/1721
+	 * @see http://developer.riotgames.com/api/methods#!/544/1716
 	 * @var bool|null|object
 	 */
 	protected $_api_result;
 
 	/**
 	 * @param $region
-	 * @param string|int $itemId
+	 * @param string|int $masteryId
 	 */
-	public function __construct($region, $itemId = '') {
+	public function __construct($region, $masteryId = '') {
 		$this->_api_template = Item::API_TEMPLATE;
 		$this->_path_params  = array(
 			'region' => $region,
 			'v'      => $this->_v,
-			'id'     => $itemId,
+			'id'     => $masteryId,
 		);
 	}
 
 	protected function result_callback() {
 		if (isset($this->_path_params['id']) && empty($this->_path_params['id'])) {
-			$this->_responseAll = new ItemListDto($this->_api_result);
+			$this->_responseAll = new MasteryListDto($this->_api_result);
 		}
 		else {
-			$this->_response = new ItemDto($this->_api_result);
+			$this->_response = new MasteryDto($this->_api_result);
 		}
 	}
 
@@ -134,8 +132,8 @@ class Item extends Provider {
 	 * @param $data
 	 * @return $this
 	 */
-	public function qItemData($data) {
-		$this->_query_params['itemData'] = is_array($data) ? implode(',', $data) : $data;
+	public function qMasteryData($data) {
+		$this->_query_params['masteryData'] = is_array($data) ? implode(',', $data) : $data;
 
 		return $this;
 	}
@@ -146,8 +144,8 @@ class Item extends Provider {
 	 * @param $data
 	 * @return $this
 	 */
-	public function qItemListData($data) {
-		$this->_query_params['itemListData'] = is_array($data) ? implode(',', $data) : $data;
+	public function qMasteryListData($data) {
+		$this->_query_params['masteryListData'] = is_array($data) ? implode(',', $data) : $data;
 
 		return $this;
 	}

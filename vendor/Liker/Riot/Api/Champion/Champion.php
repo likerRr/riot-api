@@ -12,10 +12,17 @@ use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Response\Champion\Champion as ResponseChampion;
 
+/**
+ * Class Champion
+ * @package vendor\Liker\Riot\Api\Champion
+ */
 class Champion extends Provider {
 
 	const API_TEMPLATE = '{region}/{v}/champion';
 
+	/**
+	 * @var array
+	 */
 	public static $availableRegions = array(
 		Region::BR,
 		Region::EUNE,

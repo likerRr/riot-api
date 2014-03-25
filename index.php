@@ -50,13 +50,19 @@
 //		->qLocale('ru_RU')
 //		->request();
 //	var_dump($staticChampion->getAll());
-	$staticItem = $api
+//	$staticItem = $api
 //		->staticItem(Region::RU, 3180)
-		->staticItem(Region::RU)
-		->qItemData(array(\vendor\Liker\Riot\Helpers\ItemData::ALL))
-		->qLocale('ru_RU')
-		->request();
+//		->staticItem(Region::RU)
+//		->qItemListData(array(\vendor\Liker\Riot\Helpers\LolStaticData\ItemData::ALL))
+//		->qLocale('ru_RU')
+//		->request();
 //	var_dump($staticItem->getAll());
+	$mastery = $api
+		->staticMastery(Region::RU)
+		->qLocale('ru_RU')
+		->qMasteryListData(\vendor\Liker\Riot\Helpers\LolStaticData\MasteryListData::ALL)
+		->request();
+
 //	$championApi = $api
 //		->champion(Region::NA)
 //		->qFreeToPlay()

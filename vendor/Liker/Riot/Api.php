@@ -17,6 +17,7 @@ use vendor\Liker\Riot\Api\League\Team;
 use vendor\Liker\Riot\Api\League\TeamEntry;
 use vendor\Liker\Riot\Api\LolStaticData\Champion as StaticChampion;
 use vendor\Liker\Riot\Api\LolStaticData\Item as StaticItem;
+use vendor\Liker\Riot\Api\LolStaticData\Mastery as StaticMastery;
 
 class Api {
 
@@ -149,6 +150,17 @@ class Api {
 		$staticChampion = new StaticItem($region, $itemId);
 
 		return $staticChampion;
+	}
+
+	/**
+	 * @param $region
+	 * @param $masteryId
+	 * @return StaticMastery
+	 */
+	public function staticMastery($region, $masteryId = '') {
+		$staticMastery = new StaticMastery($region, $masteryId);
+
+		return $staticMastery;
 	}
 
 	/**

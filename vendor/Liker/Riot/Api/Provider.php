@@ -8,10 +8,13 @@
 
 namespace vendor\Liker\Riot\Api;
 
-
 use vendor\Liker\Riot\Api;
 use vendor\Liker\Riot\Error;
 
+/**
+ * Class Provider
+ * @package vendor\Liker\Riot\Api
+ */
 class Provider {
 
 	/**
@@ -20,16 +23,32 @@ class Provider {
 	 */
 	protected $_api_result = null;
 
+	/**
+	 * Array of path params for uri template $key => $val
+	 * @var array
+	 */
 	protected $_path_params = array();
 
+	/**
+	 * Array of query params for GET
+	 * @var array
+	 */
 	protected $_query_params = array();
 
+	/**
+	 * @var string
+	 */
 	protected $_api_template = '';
 
-	protected $_api_url = '';
-
+	/**
+	 * Built API URI
+	 * @var string
+	 */
 	protected $_api_uri = '';
 
+	/**
+	 * @var bool
+	 */
 	protected $_status_error = false;
 
 	/**
@@ -54,12 +73,19 @@ class Provider {
 		return $this;
 	}
 
+	/**
+	 * @param $statusJSON
+	 */
 	protected function checkStatus($statusJSON) {
 		if (isset($statusJSON->status)) {
 			$this->_status = new Error($statusJSON->status);
 		}
 	}
 
+	/**
+	 * Check if there is any errors on response
+	 * @return bool
+	 */
 	public function isNoError() {
 		if ($this->_status === null) {
 			return true;
@@ -68,10 +94,18 @@ class Provider {
 		return false;
 	}
 
+	/**
+	 * Get error message
+	 * @return string
+	 */
 	public function getErrorMessage() {
 		return $this->_status->message;
 	}
 
+	/**
+	 * Get error code
+	 * @return int
+	 */
 	public function getErrorCode() {
 		return $this->_status->code;
 	}
@@ -92,7 +126,6 @@ class Provider {
 			$query .= $param . '=' . $value . '&';
 		}
 
-		$this->_api_url = $url;
 		$this->_api_uri = Api::API_URL . $url . '?' . $query . 'api_key=' . Api::key();
 
 		return $this;

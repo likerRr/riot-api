@@ -8,9 +8,16 @@
 
 namespace vendor\Liker\Riot\Api;
 
-
+/**
+ * Class Request
+ * @package vendor\Liker\Riot\Api
+ */
 class Request {
 
+	/**
+	 * @param $uri
+	 * @return mixed
+	 */
 	public static function make($uri) {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $uri);

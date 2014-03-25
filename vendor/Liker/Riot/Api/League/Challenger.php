@@ -12,10 +12,17 @@ use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Types\League\LeagueDto;
 
+/**
+ * Class Challenger
+ * @package vendor\Liker\Riot\Api\League
+ */
 class Challenger extends Provider {
 
 	const API_TEMPLATE = '{region}/{v}/league/challenger';
 
+	/**
+	 * @var array
+	 */
 	public static $availableRegions = array(
 		Region::BR,
 		Region::EUNE,

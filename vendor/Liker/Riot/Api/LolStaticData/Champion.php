@@ -14,10 +14,17 @@ use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Response\LolStaticData\Champion as ResponseStaticChampion;
 use vendor\Liker\Riot\Types\LolStaticData\ChampionDto;
 
+/**
+ * Class Champion
+ * @package vendor\Liker\Riot\Api\LolStaticData
+ */
 class Champion extends Provider {
 
 	const API_TEMPLATE = 'static-data/{region}/{v}/champion/{id}';
 
+	/**
+	 * @var array
+	 */
 	public static $availableRegions = array(
 		Region::BR,
 		Region::EUNE,
@@ -63,6 +70,10 @@ class Champion extends Provider {
 	 */
 	protected $_api_result;
 
+	/**
+	 * @param $region
+	 * @param string|int $championId
+	 */
 	public function __construct($region, $championId = '') {
 		$this->_api_template = Champion::API_TEMPLATE;
 		$this->_path_params  = array(

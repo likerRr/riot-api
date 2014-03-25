@@ -12,10 +12,17 @@ use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Response\League\TeamEntry as ResponseLeagueTeamEntry;
 
+/**
+ * Class TeamEntry
+ * @package vendor\Liker\Riot\Api\League
+ */
 class TeamEntry extends Provider {
 
 	const API_TEMPLATE = '{region}/{v}/league/by-team/{teamId}/entry';
 
+	/**
+	 * @var array
+	 */
 	public static $availableRegions = array(
 		Region::BR,
 		Region::EUNE,

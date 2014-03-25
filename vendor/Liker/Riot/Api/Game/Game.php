@@ -8,15 +8,21 @@
 
 namespace vendor\Liker\Riot\Api\Game;
 
-
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Response\Game\Game as ResponseGame;
 
+/**
+ * Class Game
+ * @package vendor\Liker\Riot\Api\Game
+ */
 class Game extends Provider {
 
 	const API_TEMPLATE = '{region}/{v}/game/by-summoner/{summonerId}/recent';
 
+	/**
+	 * @var array
+	 */
 	public static $availableRegions = array(
 		Region::BR,
 		Region::EUNE,

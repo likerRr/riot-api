@@ -8,6 +8,10 @@
 
 namespace vendor\Liker\Riot\Types\LolStaticData\ItemList\BasicData;
 
+/**
+ * Class GoldDto
+ * @package vendor\Liker\Riot\Types\LolStaticData\ItemList\BasicData
+ */
 class GoldDto {
 
 	/**

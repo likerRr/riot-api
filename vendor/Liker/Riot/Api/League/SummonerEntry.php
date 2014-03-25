@@ -12,10 +12,17 @@ use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
 use vendor\Liker\Riot\Response\League\SummonerEntry as ResponseLeagueSummonerEntry;
 
+/**
+ * Class SummonerEntry
+ * @package vendor\Liker\Riot\Api\League
+ */
 class SummonerEntry extends Provider {
 
 	const API_TEMPLATE = '{region}/{v}/league/by-summoner/{summonerId}/entry';
 
+	/**
+	 * @var array
+	 */
 	public static $availableRegions = array(
 		Region::BR,
 		Region::EUNE,
