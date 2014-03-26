@@ -62,7 +62,7 @@
 		->qLocale('ru_RU')
 		->qMasteryListData(\vendor\Liker\Riot\Helpers\LolStaticData\MasteryListData::ALL)
 		->request();
-
+	var_dump($mastery->getAll()->tree()->offense(0)->masteryTreeItems(1)->masteryId());
 //	$championApi = $api
 //		->champion(Region::NA)
 //		->qFreeToPlay()

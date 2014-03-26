@@ -11,6 +11,7 @@ namespace vendor\Liker\Riot\Api\LolStaticData;
 use vendor\Liker\Riot\Api;
 use vendor\Liker\Riot\Api\Provider;
 use vendor\Liker\Riot\Constants\Region;
+use vendor\Liker\Riot\Types\LolStaticData\MasteryListDto;
 
 /**
  * Class Mastery
@@ -73,7 +74,7 @@ class Mastery extends Provider {
 	 * @param string|int $masteryId
 	 */
 	public function __construct($region, $masteryId = '') {
-		$this->_api_template = Item::API_TEMPLATE;
+		$this->_api_template = Mastery::API_TEMPLATE;
 		$this->_path_params  = array(
 			'region' => $region,
 			'v'      => $this->_v,
@@ -82,6 +83,7 @@ class Mastery extends Provider {
 	}
 
 	protected function result_callback() {
+//		var_dump($this->_api_result);die;
 		if (isset($this->_path_params['id']) && empty($this->_path_params['id'])) {
 			$this->_responseAll = new MasteryListDto($this->_api_result);
 		}
@@ -91,14 +93,14 @@ class Mastery extends Provider {
 	}
 
 	/**
-	 * @return ItemDto
+	 * @return MasteryDto
 	 */
 	public function get() {
 		return $this->_response;
 	}
 
 	/**
-	 * @return ItemListDto
+	 * @return MasteryListDto
 	 */
 	public function getAll() {
 		return $this->_responseAll;

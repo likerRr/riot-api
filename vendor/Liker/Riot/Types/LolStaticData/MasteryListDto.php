@@ -7,6 +7,8 @@
  */
 
 namespace vendor\Liker\Riot\Types\LolStaticData;
+use vendor\Liker\Riot\Types\LolStaticData\MasteryList\MasteryDto;
+use vendor\Liker\Riot\Types\LolStaticData\MasteryList\MasteryTreeDto;
 
 /**
  * Class MasteryListDto
@@ -63,7 +65,7 @@ class MasteryListDto {
 	}
 
 	/**
-	 * @return \vendor\Liker\Riot\Types\LolStaticData\MasteryTreeDto
+	 * @return MasteryTreeDto
 	 */
 	public function tree() {
 		return $this->_tree;
